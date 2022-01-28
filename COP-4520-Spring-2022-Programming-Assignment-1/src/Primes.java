@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
 // Adapted from SieveOfEratosthenes (source: https://www.geeksforgeeks.org/sieve-of-eratosthenes/)
+// Uses the Sieve Of Eratosthenes algorithm to calculate primes from 2 to n.
 class NewThread extends Thread {
 	static AtomicInteger counter = new AtomicInteger(2);
 	static final int n = 100000000;
@@ -28,14 +29,15 @@ public class Primes {
 		long startTime = System.currentTimeMillis();
 		long sum = 0;
 		long count = 0;
+		int numThreads = 8;
 		ArrayList<Thread> threads = new ArrayList<>();
 
 		// Initialize array used for prime checking
-		for (int i = 0; i <= NewThread.n; i++)
+		for (int i = 2; i <= NewThread.n; i++)
 			NewThread.prime[i] = true;
 
 		// Create and run threads
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < numThreads; i++) {
 			NewThread t = new NewThread();
 			t.setName("MyThread-" + i);
 			t.start();
@@ -86,9 +88,9 @@ public class Primes {
 
 		    outputStream.close();
 		} catch (Exception e) {
-			
+			e.printStackTrace(System.out);
 		}
-		
+
 	}
 
 }
