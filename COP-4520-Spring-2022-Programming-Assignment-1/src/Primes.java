@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 // Uses the Sieve Of Eratosthenes algorithm to calculate primes from 2 to n.
 class NewThread extends Thread {
 	static AtomicInteger counter = new AtomicInteger(2);
-	static final int n = 100000000;
+	static final int n = (int)Math.pow(10, 8);
 	static boolean prime[] = new boolean[n + 1];
 
 	public void run() {
